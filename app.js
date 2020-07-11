@@ -59,7 +59,7 @@ function setPosition(position) {
   getWeather(latitude, longitude);
 }
 
-function showError() {
+function showError(error) {
   notificationElement.style.display = "block";
   notificationElement.innerHTML = `<p> ${error.message} </p>`;
 }
