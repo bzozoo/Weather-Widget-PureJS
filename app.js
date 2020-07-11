@@ -45,14 +45,14 @@ tempElement.addEventListener("click", function() {
 });
 
 if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(setPosition, showError);
+  navigator.geolocation.getCurrentPosition(setGeoPosition, showError);
 } else {
   notificationElement.style.display = "block";
   notificationElement.innerHTML =
     "<p>Browser does not support Geolocation.</p>";
 }
 
-function setPosition(position) {
+function setGeoPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
 
