@@ -2,7 +2,7 @@ const KELVIN = 273;
 const key = "114a39f2791e27bc8bf67c776b796c3b";
 const weather = {
   temperature: {
-    value: 18,
+    value: 50,
     unit: "celsius"
   },
   description: "few clouds",
@@ -36,7 +36,7 @@ tempElement.addEventListener("click", function() {
   if (weather.temperature.unit === "celsius") {
     let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
     fahrenheit = Math.floor(fahrenheit);
-    tempElement.innerHTML = `${fahrenheit} ° <span>C</span>`;
+    tempElement.innerHTML = `${fahrenheit} ° <span>F</span>`;
     weather.temperature.unit = "fahrenheit";
   } else {
     tempElement.innerHTML = `${weather.temperature.value} ° <span>C</span>`;
