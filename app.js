@@ -64,3 +64,7 @@ function showError() {
   notificationElement.getElementsByClassName.display = "block";
   notificationElement.innerHTML = `<p> ${error.message} </p>`;
 }
+
+function getWeather(latitude, longitude) {
+  let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+}
