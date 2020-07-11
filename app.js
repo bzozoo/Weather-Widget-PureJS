@@ -15,13 +15,50 @@ const tempElement = document.querySelector(".temperature-value p");
 const descElement = document.querySelector(".temperature-description p");
 const locationElement = document.querySelector(".location p");
 
-displayWeather(){
+function displayWeather() {
+  iconElement.innerHTML = `<img src="icons/${weather.iconId}.png">`;
 
-iconElement.innerHTML = `<img src="icons/${weather.iconId}.png">`;
+  tempElement.innerHTML = `${weather.temperature.value} ° <span>C</span>`;
 
-tempElement.innerHTML = `${weather.temperature.value} ° <span>C</span>`;
+  descElement.innerHTML = weather.description;
 
-descElement.innerHTML = weather.description;
+  locationElement.innerHTML = `${weather.city}, ${weather.country}`;
+}
 
-locationElement.innerHTML = `${weather.city}, ${weather.country}`;
+function celsiusToFahrenheit(temperature) {
+  return temperature * (9 / 5) + 32;
+}
+
+tempElement.addEventListener("click", function() {
+  if (weather.temperature.value === undefined) return;
+  if (weather.temperature.unit === "celsius") {
+    let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
+    fahrenheit = Math.floor(fahrenheit);
+    tempElement.innerHTML = `${fahrenheit} ° <span>C</span>`;
+    weather.temperature.unit = "fahrenheit";
+  } else {
+    tempElement.innerHTML = `${weather.temperature.value} ° <span>C</span>`;
+    weather.temperature.unit = "celsius";
+  }
+});
+displayWeather();
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(setPosition, showError);
+} else {
+  notificationElement.getElementsByClassName.display = "block";
+  notificationElement.innerHTML =
+    "<p>Browser does not support Geolocation.</p>";
+}
+
+function setPosition(position) {
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+
+  getWeather(latitude, longitude);
+}
+
+function showError() {
+  notificationElement.getElementsByClassName.display = "block";
+  notificationElement.innerHTML = `<p> ${error.message} </p>`;
 }
