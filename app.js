@@ -1,3 +1,5 @@
+const KELVIN = 273;
+const key = "114a39f2791e27bc8bf67c776b796c3b";
 const weather = {
   temperature: {
     value: 18,
